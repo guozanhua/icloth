@@ -3,18 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sunny.icloth.mapper.UserInfoMapper">
-    <resultMap id="UserInfoResultMap" type="UserInfo">
+    <resultMap id="userInfoResultMap" type="UserInfo">
         <id column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
     </resultMap>
 
     <insert id="register">
-        INSERT INTO t_user (username, password)
-        VALUES(#{user.username}, #{user.password})
-
+        INSERT INTO `t_user` (username, password)
+        VALUES(#{username}, #{password})
     </insert>
-    <select id="listAll" resultMap="UserInfoResultMap">
+
+    <select id="listAll" resultMap="userInfoResultMap">
         SELECT *
         FROM `t_user`
         ORDER BY `created_time`
@@ -25,4 +25,12 @@
         FROM `t_user`
         WHERE  `username` = #{username}
     </select>
+
+    <select id="queryByUsername" resultMap="userInfoResultMap">
+         SELECT *
+         FROM `t_user`
+         WHERE `t_user`.username = #{userInfo.username}
+         ORDER BY `created_time`
+    </select>
+
 </mapper>

@@ -21,15 +21,6 @@ public interface UserInfoMapper {
     public void register(@Param("username") String username, @Param("password") String password) throws Exception;
 
     /**
-     * 登录
-     *
-     * @param username
-     * @param password
-     * @throws Exception
-     */
-    public void login(@Param("username") String username, @Param("password") String password) throws Exception;
-
-    /**
      * 查询全部信息
      *
      * @return
@@ -46,5 +37,13 @@ public interface UserInfoMapper {
      */
     public int countByUsername(String username) throws Exception;
 
+    /**
+     * 根据用户名查询
+     *
+     * @param username
+     * @return
+     * @throws Exception
+     */
+    public UserInfo queryByUsername(String username) throws Exception;
 
 }

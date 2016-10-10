@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.icloth.mapper.ClothMapper">
+    <resultMap id="clothResultMap" type="Cloth">
+        <id column="id" property="id"/>
+        <result column="cloth_name" property="clothName"/>
+        <result column="type" property="type"/>
+        <result column="season" property="season"/>
+        <result column="color" property="color"/>
+    </resultMap>
+
+    <delete id="deleteById" >
+        DELETE *
+        FROM `t_cloth`
+        WHERE `t_cloth`.id = #{id}
+    </delete>
+
+    <select id="queryByColor" resultMap="clothResultMap">
+        SELECT *
+        FROM `t_cloth`
+        WHERE `t_cloth`.color = #{cloth.color}
+    </select>
+
+    <select id="queryBySeason" resultMap="clothResultMap">
+        SELECT *
+        FROM `t_cloth`
+        WHERE `t_cloth`.season = #{cloth.season}
+    </select>
+
+    <select id="queryByType" resultMap="clothResultMap">
+        SELECT *
+        FROM `t_cloth`
+        WHERE `t_cloth`.type = #{cloth.type}
+    </select>
+
+    <insert id="newCloth">
+        INSERT INTO `t_cloth`(`cloth_name`, `type`, `season`, `color`)
+        VALUES (#{clothName}, #{type}, #{season}, #{color})
+    </insert>
+</mapper>

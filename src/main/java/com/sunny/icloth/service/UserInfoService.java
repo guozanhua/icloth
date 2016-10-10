@@ -31,15 +31,6 @@ public interface UserInfoService {
     public void register(String username, String password) throws Exception;
 
     /**
-     * 登录
-     *
-     * @param username
-     * @param password
-     * @throws Exception
-     */
-    public void login(String username, String password) throws Exception;
-
-    /**
      * 根据用户名判断重复
      *
      * @param username
@@ -47,5 +38,14 @@ public interface UserInfoService {
      * @throws Exception
      */
     public int countByUsername(String username) throws Exception;
+
+    /**
+     * 根据用户名查询
+     *
+     * @param username
+     * @return
+     * @throws Exception
+     */
+    public UserInfo queryByUsername(String username) throws Exception;
 
 }

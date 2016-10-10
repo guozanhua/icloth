@@ -39,19 +39,7 @@ public class UserInfoServiceImpl implements UserInfoService {
                 userInfoMapper.register(username, password);
             }
         } catch (Exception e) {
-            throw new Exception("该手机号已经被注册了");
-        }
-    }
-
-    @Override
-    public void login(String username, String password) throws Exception {
-        int number = userInfoMapper.countByUsername(username);
-        try {
-            if(number == 1) {
-                userInfoMapper.login(username, password);
-            }
-        } catch (Exception e) {
-            throw new Exception("登录失败");
+            throw new Exception(e.getMessage());
         }
     }
 
@@ -62,5 +50,18 @@ public class UserInfoServiceImpl implements UserInfoService {
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
+    }
+
+    @Override
+    public UserInfo queryByUsername(String username) throws Exception {
+        UserInfo userInfo = new UserInfo();
+        try {
+            if(username != null) {
+                userInfo = userInfoMapper.queryByUsername(username);
+            }
+        } catch(Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        return userInfo;
     }
 }
